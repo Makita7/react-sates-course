@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function ImperativeStates() {
     //compunded state
@@ -10,53 +10,96 @@ function ImperativeStates() {
         inputtedPass: '',
     });
 
+    const [changePass, setChangePass ] = useState(false);
+
     let CheckPass = () =>{
         if (state.inputtedPass === state.password){
             setState({
-                ...state,
                 correct: true,
             });
             setTimeout(() => {
                 setState({
-                    ...state,
                     correct: false,
                 });
             }, 2000)
             
         } else{
                 setState({
-                    ...state,
                     error:true,
                 })
                 setTimeout(() =>{
                     setState({
-                        ...state,
                         error:false,
                     })
                 }, 2000);
             }
     }
 
-    const UpdatePass = (e) =>{
+    const UpdateInput = (e) =>{
         setState({
-            ...state,
-            inputtedPass: e.target.value
-        })
+            inputtedPass: e.target.value,
+        });
     }
-    console.log(state.inputtedPass);
 
+    const [temp, setTemp] = useState('');
+
+    const Temporary = (e) => {
+        setTemp(e.target.value);
+    }
+
+    const ChangePass = () => {
+        setState({
+            password :  temp
+        });
+        setChangePass(false);
+    }
+
+    const Enter = (e) => {
+        if (e.key === 'Enter') {
+        ChangePass();
+      }
+    }
+
+
+    console.log(temp);
+    
   return (
-    <div className='card'>
-        <h1 className='title'>LET'S GO!!!!</h1>
-        <p><strong>Password: </strong> {state.password}</p>
-        
-        <input type='text' placeholder="Input password..." onChange={UpdatePass}/> <br/>
-        
-        <button onClick={CheckPass}>Log In</button> <br/>
+    <div>
+        <div className='card'>
+            <h1 className='title'>LET'S GO!!!!</h1>
+            <p><strong>Password: </strong> {state.password}</p>
+            
+            <input type='text' placeholder="Input password..." onChange={UpdateInput}/> <br/>
+            
+            <button onClick={CheckPass}>Log In</button> <br/>
 
-        { state.error ? 'incorrect password' : '' }
+            { state.error ? 'incorrect password' : '' }
 
-        { state.correct ? 'password was correct' : '' }
+            { state.correct ? 'password was correct' : '' }
+
+        </div>
+        <div className='changePass center'>
+            <p className='textCenter' type='text' onClick={() => {setChangePass(true)}}>
+                { changePass ? ''
+                             : 'Do you want to change password?'
+                }
+                </p>
+
+            { changePass 
+                ? 
+                <div>
+                    <p className='textCenter'>Input New Password</p> <br/>
+                    <input className='center' placeholder='new password' onChange={Temporary} onKeyDown={Enter}/> <br/>
+                    <div className='flex buttons'>
+
+                    <button className='center' onClick={ChangePass}>Change</button>
+                    <button className='center' onClick={() => {setChangePass(false)}}>Exit</button>
+                    </div>
+                </div>
+
+                : ''
+            }
+        </div>
 
     </div>
   )
