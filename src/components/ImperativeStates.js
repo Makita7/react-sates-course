@@ -2,82 +2,87 @@ import { useState } from 'react';
 
 function ImperativeStates() {
     //compunded state
-    const [state, setState] = useState({
-        loading: false,
-        error: false,
-        correct: false,
-        password: 'practicingReact',
-        inputtedPass: '',
-    });
+    // const [state, setState] = useState({
+    //     loading: false,
+    //     error: false,
+    //     correct: false,
+    // });
 
+    const [error, setError ] = useState('false');
+    const [correct, setCorrect ] = useState('false');
+    const [password, setPassword ] = useState('practicingReact');
+    const [noPass, setNoPass ] = useState(false);
+    const [inputtedPass, setInputtedPass ] = useState('');
     const [changePass, setChangePass ] = useState(false);
+    const [temp, setTemp] = useState('');
+
 
     let CheckPass = () =>{
-        if (state.inputtedPass === state.password){
-            setState({
-                correct: true,
-            });
+        if (inputtedPass === password){
+            setCorrect(true);
+
             setTimeout(() => {
-                setState({
-                    correct: false,
-                });
+                setCorrect(false);
             }, 2000)
             
+        } else if (inputtedPass === ''){
+            setNoPass(true);
+            setTimeout(() =>{
+                setNoPass(false);
+            }, 2000);
+
         } else{
-                setState({
-                    error:true,
-                })
+                setError(true);
+
                 setTimeout(() =>{
-                    setState({
-                        error:false,
-                    })
+                    setError(false);
                 }, 2000);
             }
     }
 
+    
     const UpdateInput = (e) =>{
-        setState({
-            inputtedPass: e.target.value,
-        });
+        setInputtedPass(e.target.value);
     }
-
-    const [temp, setTemp] = useState('');
-
+    
     const Temporary = (e) => {
         setTemp(e.target.value);
     }
 
-    const ChangePass = () => {
-        setState({
-            password :  temp
-        });
+    const ChangePassword = () => {
+        setPassword(temp);
         setChangePass(false);
     }
-
+    
     const Enter = (e) => {
         if (e.key === 'Enter') {
-        ChangePass();
-      }
+        ChangePassword();
     }
+}
 
 
-    console.log(temp);
+// console.log('input:',{inputtedPass});
+console.log('pass:',{password});
+console.log('error:',{error});
     
   return (
     <div>
         <div className='card'>
             <h1 className='title'>LET'S GO!!!!</h1>
-            <p><strong>Password: </strong> {state.password}</p>
+            <p><strong>Password: </strong> {password}</p>
             
-            <input type='text' placeholder="Input password..." onChange={UpdateInput}/> <br/>
+            <input type='text' placeholder="Input password..." onChange={ UpdateInput }/> <br/>
             
             <button onClick={CheckPass}>Log In</button> <br/>
 
-            { state.error ? 'incorrect password' : '' }
+            {error ? <p className='warning'>incorrect password</p> : '' }
 
-            { state.correct ? 'password was correct' : '' }
+            {correct ? <p className='warning'>password is correct</p> : '' }
+            
+            { noPass ? <p className='warning'>please input a password</p> : '' }
 
         </div>
+
         <div className='changePass center'>
             <p className='textCenter' type='text' onClick={() => {setChangePass(true)}}>
                 { changePass ? ''
@@ -92,7 +97,7 @@ function ImperativeStates() {
                     <input className='center' placeholder='new password' onChange={Temporary} onKeyDown={Enter}/> <br/>
                     <div className='flex buttons'>
 
-                    <button className='center' onClick={ChangePass}>Change</button>
+                    <button className='center' onClick={ChangePassword}>Change</button>
                     <button className='center' onClick={() => {setChangePass(false)}}>Exit</button>
                     </div>
                 </div>
@@ -102,7 +107,7 @@ function ImperativeStates() {
         </div>
 
     </div>
-  )
+  );
 }
 
-export default ImperativeStates
+export default ImperativeStates;

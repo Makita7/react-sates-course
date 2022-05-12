@@ -56,6 +56,10 @@ input::placeholder{
   padding-bottom: 0.2rem;
 }
 
+.warning{
+  font-style: italic;
+}
+
 .changePass{
   width: 24rem;
 }
@@ -83,3 +87,4 @@ input::placeholder{
 .buttons{
   justify-content: space-around !important;
 }
+
