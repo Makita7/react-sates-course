@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function ImperativeStates() {
+function Password() {
     //compunded state
     // const [state, setState] = useState({
     //     loading: false,
@@ -8,8 +8,11 @@ function ImperativeStates() {
     //     correct: false,
     // });
 
-    const [error, setError ] = useState('false');
-    const [correct, setCorrect ] = useState('false');
+
+    //save password to localStorage
+
+    const [error, setError ] = useState(false);
+    const [correct, setCorrect ] = useState(false);
     const [password, setPassword ] = useState('practicingReact');
     const [noPass, setNoPass ] = useState(false);
     const [inputtedPass, setInputtedPass ] = useState('');
@@ -110,4 +113,4 @@ console.log('error:',{error});
   );
 }
 
-export default ImperativeStates;
+export default Password;

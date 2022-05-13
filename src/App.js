@@ -1,11 +1,11 @@
 import './App.css';
 import DeclerativeStates from './components/DeclerativeStates';
-import ImperativeStates from './components/ImperativeStates';
+import Password from './components/Password';
 
 function App() {
   return (
     <div>
-      <ImperativeStates/>
+      <Password/>
       <br/><br/>
       <DeclerativeStates/>
     </div>

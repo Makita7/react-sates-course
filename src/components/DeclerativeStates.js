@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 function DeclerativeStates() {
-
+  const [ state, setState ] = useState();
 
 
 
   return (
-    <div>DeclerativeStates</div>
+    <div>
+      
+
+    </div>
   )
 }
 
