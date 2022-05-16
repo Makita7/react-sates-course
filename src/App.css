@@ -88,3 +88,34 @@ input::placeholder{
   justify-content: space-around !important;
 }
 
+
+
+/* SWITCH STATEMENT */
+
+.switch{
+  text-align: center;
+}
+
+.switch .select{
+  text-transform: uppercase;
+}
+
+.switch .black{
+  color: rgb(0, 0, 0);
+  font-weight: 900;
+}
+
+.switch .red{
+  color: #910000;
+  font-weight: 900;
+}
+
+.switch .blue{
+  color: rgb(4, 4, 141);
+  font-weight: 900;
+}
+
+.switch .green{
+  color: rgb(51, 179, 34);
+  font-weight: 900;
+}

@@ -1,5 +1,5 @@
 import './App.css';
-import DeclerativeStates from './components/DeclerativeStates';
+import SwitchStatement from './components/SwitchStatement';
 import Password from './components/Password';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     <div>
       <Password/>
       <br/><br/>
-      <DeclerativeStates/>
+      <SwitchStatement/>
     </div>
   );
 }
